@@ -1,12 +1,23 @@
 <template>
-  <div class="text-center max-h-screen">
-    <h2 class="text-2xl font-bold">Gaia-X Test Network Hackathon Transactions / Hour</h2>
-    <div class="h-screen max-h-screen w-full">
-      <line-chart
-        v-if="showLine"
-        :data="blockdata"
-        :options="{ responsive: true, maintainAspectRatio: false }"
-      ></line-chart>
+  <div class="p-4">
+    <h2 class="text-6xl font-semibold text-gray-900 mb-4 leading-none md:w-1/2">
+      Live Stats from the Gaia-X network
+    </h2>
+    <div
+      class="h-fit max-h-screen bg-white drop-shadow-lg rounded-2xl p-4 mb-4"
+    >
+      <div class="btn-group">
+        <button class="btn btn-active">Monthly</button>
+        <button class="btn">Weekly</button>
+        <button class="btn">Daily</button>
+      </div>
+      <div class="h-fit max-h-screen w-full">
+        <line-chart
+          v-if="showLine"
+          :data="blockdata"
+          :options="{ responsive: true, maintainAspectRatio: false }"
+        ></line-chart>
+      </div>
     </div>
   </div>
 </template>
@@ -14,7 +25,6 @@
 <script>
 import _ from 'lodash'
 import { format } from 'date-fns'
-import { readableHash, randomRgb } from '~/helpers/charts'
 import blockHistory from '~/static/blockHistory.json'
 
 export default {
@@ -68,16 +78,6 @@ export default {
           tension: this.graphTension,
         },
       ]
-
-      // add node specific data
-      groupedByNode.map((group, i) => {
-        datasets.push({
-          label: `Node ${readableHash(nodes[i])}`,
-          data: group,
-          borderColor: randomRgb(1, 1, 0),
-          tension: this.graphTension,
-        })
-      })
       this.blockdata = {
         labels: timeStamps,
         datasets,

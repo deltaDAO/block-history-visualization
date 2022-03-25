@@ -1,19 +1,19 @@
 <template>
-<div class="container mx-auto px-4">
-  <hero-section />
-  <total-transactions/>
-  <chart-data/>
-</div>
+  <div>
+    <hero-section />
+    <chain-statistics />
+    <total-transactions-chart />
+  </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import ChartData from '~/components/ChartData.vue'
+import ChainStatistics from '~/components/ChainStatistics.vue'
 import HeroSection from '~/components/HeroSection.vue'
-import TotalTransactions from '~/components/TotalTransactions.vue'
+import TotalTransactionsChart from '~/components/TotalTransactionsChart.vue'
 
 export default Vue.extend({
   name: 'IndexPage',
-  components: { HeroSection, TotalTransactions, ChartData },
+  components: { HeroSection, ChainStatistics, TotalTransactionsChart },
 })
 </script>

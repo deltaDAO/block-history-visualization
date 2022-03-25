@@ -1,23 +1,35 @@
 <template>
   <div class="m-4 min-h-screen">
-    <div class="mt-20 lg:mt-40 text-left">
+    <div class="mt-4 lg:mt-4 text-left">
       <div class="flex justify-start flex-col lg:flex-row gap-4">
-        <div>
-          <h1 class="text-6xl font-semibold text-gray-900 leading-none">
-            Gaia-X Test Network Hackathon
-          </h1>
-          <div class="mt-6 text-xl font-light text-true-gray-500 antialiased">
-            See the on-chain statistics.
+        <div class="flex justify-end flex-col">
+          <div class="pb-8">
+            <div class="mt-6 text-xl font-light text-black antialiased">
+              Hackathon #3
+            </div>
+            <h1 class="text-6xl font-semibold text-black leading-none">
+              Gaia-X Testnet statistics
+            </h1>
           </div>
-          <nuxt-link to="#data">
-            <button
-              class="mt-6 px-8 py-4 rounded-full font-normal tracking-wide bg-gradient-to-b from-blue-600 to-blue-700 text-white outline-none focus:outline-none hover:shadow-lg hover:from-blue-700 transition duration-200 ease-in-out"
-            >
-              Check out the data
-            </button>
-          </nuxt-link>
+          <div
+            class="stats stats-vertical sm:stats-horizontal bg-primary text-primary-content my-4 drop-shadow-lg max-w-fit"
+          >
+            <div class="stat">
+              <div class="stat-title">Total Transactions</div>
+              <div class="stat-value">8,432</div>
+            </div>
+
+            <div class="stat">
+              <div class="stat-title">Total Blocks</div>
+              <div class="stat-value">289,400</div>
+            </div>
+          </div>
         </div>
-        <img src="@/static/images/dolphin.svg" alt="dolphin" class="max-w-sm" />
+        <img
+          src="@/static/images/data.svg"
+          alt="data illustration"
+          class="w-full"
+        />
       </div>
     </div>
     <div class="mt-12 lg:mt-32 lg:ml-20 text-left">
