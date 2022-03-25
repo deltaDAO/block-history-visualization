@@ -25,11 +25,13 @@
             </div>
           </div>
         </div>
+        <div class="w-full max-w-4xl">
         <img
           src="@/static/images/data.svg"
           alt="data illustration"
-          class="w-full"
+          class="w-full p-4"
         />
+        </div>
       </div>
     </div>
     <div class="mt-12 lg:mt-32 lg:ml-20 text-left">
