@@ -20,12 +20,12 @@
           </button>
         </div>
         <div class="h-fit max-h-screen w-full">
-          <VueApexCharts
+          <Apexchart
             ref="transactionsChart"
             type="line"
             :options="chartOptions"
             :series="series"
-          ></VueApexCharts>
+          ></Apexchart>
         </div>
       </div>
     </div>
@@ -39,15 +39,11 @@ import { format, getWeek } from 'date-fns'
 import blockHistory from '~/static/blockHistory.json'
 
 export default Vue.extend({
-  components: {
-    VueApexCharts: () => import('vue-apexcharts'),
-  },
   asyncData() {
     return { blockHistory }
   },
   data() {
     return {
-      blockdata: null,
       groupByOptions: [
         { label: 'Month', value: 'month' },
         { label: 'Week', value: 'week' },
@@ -123,7 +119,7 @@ export default Vue.extend({
           )
         )
       )
-      //
+      // update chart data
       if (this.$refs.transactionsChart) {
         this.$refs.transactionsChart.updateOptions({
           series: [
@@ -138,7 +134,7 @@ export default Vue.extend({
         })
         return
       }
-      // initialize with overall data
+      // initialize with overall data during mount
       this.series = [
         {
           name: 'Transactions',
