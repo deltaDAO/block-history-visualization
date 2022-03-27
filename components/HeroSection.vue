@@ -1,5 +1,5 @@
 <template>
-  <div class="m-4 min-h-screen">
+  <div class="m-4">
     <div class="mt-4 lg:mt-4 text-left">
       <div class="flex justify-start flex-col lg:flex-row gap-4">
         <div class="flex justify-end flex-col">
@@ -26,32 +26,12 @@
           </div>
         </div>
         <div class="w-full max-w-4xl">
-        <img
-          src="@/static/images/data.svg"
-          alt="data illustration"
-          class="w-full p-4"
-        />
+          <img
+            src="@/static/images/data.svg"
+            alt="data illustration"
+            class="w-full p-4"
+          />
         </div>
-      </div>
-    </div>
-    <div class="mt-12 lg:mt-32 lg:ml-20 text-left">
-      <div
-        class="flex items-center justify-center w-12 h-12 rounded-full bg-cool-gray-100 text-gray-800 animate-bounce hover:text-gray-900 hover:bg-cool-gray-50 transition duration-300 ease-in-out"
-      >
-        <svg
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M19 14l-7 7m0 0l-7-7m7 7V3"
-          ></path>
-        </svg>
       </div>
     </div>
   </div>
