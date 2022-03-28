@@ -13,7 +13,13 @@
           <button
             v-for="option in groupByOptions"
             :key="option.value"
-            :class="['btn', { 'btn-active': selectedGroup === option.value }]"
+            :class="[
+              'btn w-1/3',
+              {
+                'btn-active': selectedGroup === option.value,
+                loading: isLoading && selectedGroup === option.value,
+              },
+            ]"
             @click="selectedGroup = option.value"
           >
             {{ option.label }}
@@ -22,10 +28,9 @@
         <div class="h-fit max-h-screen w-full">
           <Apexchart
             ref="transactionsChart"
-            type="line"
             :options="chartOptions"
             :series="series"
-          ></Apexchart>
+          />
         </div>
       </div>
     </div>
@@ -45,35 +50,41 @@ export default Vue.extend({
   data() {
     return {
       groupByOptions: [
-        { label: 'Month', value: 'month' },
-        { label: 'Week', value: 'week' },
         { label: 'Day', value: 'day' },
+        { label: 'Week', value: 'week' },
+        { label: 'Month', value: 'month' },
       ],
-      selectedGroup: 'month',
+      selectedGroup: 'day',
+      isLoading: false,
       series: [],
       chartOptions: {
         chart: {
-          type: 'line',
+          type: 'area',
         },
+        colors: ['#7300f3'],
         stroke: {
           width: 5,
           curve: 'smooth',
         },
         xaxis: {
           categories: [],
-          tickAmount: 10,
+          tickAmount: 5,
+          labels: {
+            rotate: 0,
+          },
         },
         fill: {
           type: 'gradient',
           gradient: {
             shade: 'light',
-            gradientToColors: ['#7300f3', '#46daff'],
             shadeIntensity: 1,
-            type: 'horizontal',
-            opacityFrom: 1,
-            opacityTo: 1,
-            stops: [0, 100, 100, 100],
+            opacityFrom: 0.7,
+            opacityTo: 0.9,
+            stops: [0, 90, 100],
           },
+        },
+        dataLabels: {
+          enabled: false,
         },
       },
     }
@@ -88,6 +99,7 @@ export default Vue.extend({
   },
   methods: {
     groupByNode(groupBy) {
+      this.isLoading = true
       const nodes = []
 
       const groupedBySelection = _.groupBy(blockHistory.blocks, (block) => {
@@ -100,7 +112,7 @@ export default Vue.extend({
           ? `${getWeek(new Date(block.timestamp * 1000), {
               weekStartsOn: 1,
             })}.${format(new Date(block.timestamp * 1000), 'yyyy')}`
-          : format(new Date(block.timestamp * 1000), 'dd.MM.yyyy hh')
+          : format(new Date(block.timestamp * 1000), 'dd.MM.yyyy - hh')
       })
 
       const timeStamps = Object.keys(groupedBySelection)
@@ -129,9 +141,11 @@ export default Vue.extend({
             },
           ],
           xaxis: {
+            ...this.chartOptions.xaxis,
             categories: timeStamps,
           },
         })
+        this.isLoading = false
         return
       }
       // initialize with overall data during mount
@@ -142,6 +156,8 @@ export default Vue.extend({
         },
       ]
       this.chartOptions.xaxis.categories = timeStamps
+
+      this.isLoading = false
     },
   },
 })

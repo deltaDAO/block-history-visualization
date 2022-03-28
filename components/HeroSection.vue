@@ -16,12 +16,7 @@
           >
             <div class="stat">
               <div class="stat-title">Total Transactions</div>
-              <div class="stat-value">8,432</div>
-            </div>
-
-            <div class="stat">
-              <div class="stat-title">Total Blocks</div>
-              <div class="stat-value">289,400</div>
+              <div class="stat-value text-6xl">{{ totalTransactions }}</div>
             </div>
           </div>
         </div>
@@ -36,3 +31,11 @@
     </div>
   </div>
 </template>
+
+<script>
+import Vue from 'vue'
+
+export default Vue.extend({
+  props: { totalTransactions: { type: Number, default: 0 } },
+})
+</script>
