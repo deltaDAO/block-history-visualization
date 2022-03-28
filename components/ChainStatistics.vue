@@ -17,20 +17,20 @@
       <div class="stat">
         <div class="stat-title">Total Wallet Addresses</div>
         <div class="stat-value text-primary text-6xl">
-          {{ totalWalletAddresses }}
+          {{ totalWalletAddresses.toLocaleString() }}
         </div>
       </div>
 
       <div class="stat">
         <div class="stat-title">Total Published Assets</div>
         <div class="stat-value text-primary text-6xl">
-          {{ totalPublishedAssets }}
+          {{ totalPublishedAssets.toLocaleString() }}
         </div>
       </div>
 
       <div class="stat">
         <div class="stat-title">Total blocks</div>
-        <div class="stat-value text-primary text-6xl">{{ totalBlocks }}</div>
+        <div class="stat-value text-primary text-6xl">{{ totalBlocks.toLocaleString() }}</div>
       </div>
     </div>
   </div>

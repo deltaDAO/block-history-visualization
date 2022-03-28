@@ -16,7 +16,7 @@
           >
             <div class="stat">
               <div class="stat-title">Total Transactions</div>
-              <div class="stat-value text-6xl">{{ totalTransactions }}</div>
+              <div class="stat-value text-6xl">{{ totalTransactions.toLocaleString() }}</div>
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@
       <h2
         class="text-6xl font-semibold text-gray-900 mb-4 leading-none md:w-1/2"
       >
-        Live Stats from the Gaia-X network
+        Total Transactions
       </h2>
       <div
         class="h-fit max-h-screen bg-white drop-shadow-lg rounded-2xl p-4 mb-4"
@@ -39,20 +39,28 @@
 
 <script>
 import Vue from 'vue'
-import _ from 'lodash'
-import { format, getWeek } from 'date-fns'
-import blockHistory from '~/static/blockHistory.json'
 
 export default Vue.extend({
-  asyncData() {
-    return { blockHistory }
+  props: {
+    chartData: {
+      type: Object,
+      default() {
+        return {
+          groupedByDay: { timeStamps: [], overallValues: [] },
+          groupedByWeek: { timeStamps: [], overallValues: [] },
+          groupedByMonth: { timeStamps: [], overallValues: [] },
+        }
+      },
+    },
   },
   data() {
     return {
+      chartLabels: [],
+      chartValues: [],
       groupByOptions: [
-        { label: 'Day', value: 'day' },
-        { label: 'Week', value: 'week' },
-        { label: 'Month', value: 'month' },
+        { label: 'Daily', value: 'day' },
+        { label: 'Weekly', value: 'week' },
+        { label: 'Monthly', value: 'month' },
       ],
       selectedGroup: 'day',
       isLoading: false,
@@ -91,58 +99,44 @@ export default Vue.extend({
   },
   watch: {
     selectedGroup(value) {
-      this.groupByNode(value)
+      switch (value) {
+        case 'week':
+          this.chartLabels = this.chartData.groupedByWeek.timeStamps
+          this.chartValues = this.chartData.groupedByWeek.overallValues
+          break
+        case 'month':
+          this.chartLabels = this.chartData.groupedByMonth.timeStamps
+          this.chartValues = this.chartData.groupedByMonth.overallValues
+          break
+        default:
+          this.chartLabels = this.chartData.groupedByDay.timeStamps
+          this.chartValues = this.chartData.groupedByDay.overallValues
+          break
+      }
+      this.updateChart()
     },
   },
   mounted() {
-    this.groupByNode(this.selectedGroup)
+    this.chartLabels = this.chartData.groupedByDay.timeStamps
+    this.chartValues = this.chartData.groupedByDay.overallValues
+    this.updateChart(this.selectedGroup)
   },
   methods: {
-    groupByNode(groupBy) {
+    updateChart() {
       this.isLoading = true
-      const nodes = []
 
-      const groupedBySelection = _.groupBy(blockHistory.blocks, (block) => {
-        // Find unique nodes
-        if (!nodes.includes(block.node)) nodes.push(block.node)
-        // Create timestamp and format based on selection
-        return groupBy === 'month'
-          ? format(new Date(block.timestamp * 1000), 'MM.yyyy')
-          : groupBy === 'week'
-          ? `${getWeek(new Date(block.timestamp * 1000), {
-              weekStartsOn: 1,
-            })}.${format(new Date(block.timestamp * 1000), 'yyyy')}`
-          : format(new Date(block.timestamp * 1000), 'dd.MM.yyyy - hh')
-      })
-
-      const timeStamps = Object.keys(groupedBySelection)
-      const overallValues = Object.values(groupedBySelection).map((group) =>
-        // summarize transaction count
-        group.reduce((pv, cv) => (pv += cv.transactions.length), 0)
-      )
-
-      const groupedByNode = nodes.map((node) =>
-        Object.values(groupedBySelection).map((group) =>
-          // summarize transaction count per group & hour, while filtering for a given node
-          group.reduce(
-            (pv, cv) =>
-              cv.node === node ? (pv += cv.transactions.length) : pv,
-            0
-          )
-        )
-      )
       // update chart data
       if (this.$refs.transactionsChart) {
         this.$refs.transactionsChart.updateOptions({
           series: [
             {
               name: 'Transactions',
-              data: overallValues,
+              data: this.chartValues,
             },
           ],
           xaxis: {
             ...this.chartOptions.xaxis,
-            categories: timeStamps,
+            categories: this.chartLabels,
           },
         })
         this.isLoading = false
@@ -152,10 +146,10 @@ export default Vue.extend({
       this.series = [
         {
           name: 'Transactions',
-          data: overallValues,
+          data: this.chartValues,
         },
       ]
-      this.chartOptions.xaxis.categories = timeStamps
+      this.chartOptions.xaxis.categories = this.chartLabels
 
       this.isLoading = false
     },

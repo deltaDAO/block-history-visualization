@@ -1,12 +1,12 @@
 <template>
   <div>
-    <hero-section :total-transactions="232323" />
+    <hero-section :total-transactions="stats.totalTransactions" />
     <chain-statistics
-      :total-wallet-addresses="232323"
-      :total-published-assets="232323"
-      :total-blocks="232323"
+      :total-wallet-addresses="stats.totalWalletAddresses"
+      :total-published-assets="stats.totalAssets"
+      :total-blocks="stats.totalBlocks"
     />
-    <total-transactions-chart />
+    <total-transactions-chart :chart-data="stats.totalTransactionsChartData" />
   </div>
 </template>
 
@@ -20,15 +20,9 @@ import TotalTransactionsChart from '~/components/TotalTransactionsChart.vue'
 export default Vue.extend({
   name: 'IndexPage',
   components: { HeroSection, ChainStatistics, TotalTransactionsChart },
-  data() {
-    return {
-      stats: null,
-    }
-  },
-  // mounted() {
-  //   axios
-  //     .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-  //     .then((response) => (this.stats = response))
-  // },
+  async asyncData() {
+    const { data } = await axios.get(`${process.env.baseUrl}/api/statistics`)
+    return { stats: data }
+  }
 })
 </script>
