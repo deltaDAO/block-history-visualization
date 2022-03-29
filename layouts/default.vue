@@ -9,7 +9,8 @@
     </div>
     <app-navbar class="col-start-2 col-end-8" />
     <Nuxt class="col-start-2 col-span-11 px-4" />
-    <app-footer class="col-start-1 col-span-12" />
+    <app-footer class="col-start-9 col-span-4 w-full h-full md:bg-secondary" />
+    <div class="col-start-1 col-span-12 w-full h-24 bg-base-200 mt-6"></div>
   </div>
 </template>
 
