@@ -21,7 +21,7 @@
       class="btn btn-ghost normal-case"
       rel="noopener noreferrer"
       target="_blank"
-      >Blockexplorer
+      >Block Explorer
     </a>
   </nav>
 </template>
