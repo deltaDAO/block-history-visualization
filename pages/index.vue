@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 import axios from 'axios'
 import ChainStatistics from '~/components/ChainStatistics.vue'
@@ -20,9 +20,32 @@ import TotalTransactionsChart from '~/components/TotalTransactionsChart.vue'
 export default Vue.extend({
   name: 'IndexPage',
   components: { HeroSection, ChainStatistics, TotalTransactionsChart },
-  async asyncData() {
-    const { data } = await axios.get(`${process.env.baseUrl}/api/statistics`)
-    return { stats: data }
+  // async asyncData() {
+  //   try {
+  //   const { data } = await axios.get(`${process.env.baseUrl}/api/statistics`)
+  //   return { stats: data } }
+  //   catch (e) {
+  //   }
+  // },
+  data() {
+    return {
+      stats: {
+        totalTransactions: 0,
+        totalWalletAddresses: 0,
+        totalAssets: 0,
+        totalBlocks: 0,
+        totalTransactionsChartData: {
+          groupedByDay: { timeStamps: [], overallValues: [] },
+          groupedByWeek: { timeStamps: [], overallValues: [] },
+          groupedByMonth: { timeStamps: [], overallValues: [] },
+        },
+      },
+    }
+  },
+  mounted() {
+    axios.get(`${process.env.baseUrl}/api/statistics`).then((response) => {
+      this.stats = response.data
+    })
   },
 })
 </script>
