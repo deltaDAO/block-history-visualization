@@ -23,6 +23,6 @@ export default Vue.extend({
   async asyncData() {
     const { data } = await axios.get(`${process.env.baseUrl}/api/statistics`)
     return { stats: data }
-  }
+  },
 })
 </script>
