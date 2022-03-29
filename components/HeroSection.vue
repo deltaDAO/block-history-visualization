@@ -8,7 +8,7 @@
               Hackathon #3
             </div>
             <h1 class="text-6xl font-semibold text-black leading-none">
-              Gaia-X Testnet statistics
+              Gaia-X Testnet Statistics
             </h1>
           </div>
           <div
