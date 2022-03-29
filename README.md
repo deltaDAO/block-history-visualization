@@ -1,11 +1,11 @@
 # block-history-visualization
-<img align="left" src="https://user-images.githubusercontent.com/75223088/160555630-090ebefd-3676-4f28-bf37-37ec3087ca40.png " width="450">
+<p align="center">
+<img width="1000" alt="image" src="https://user-images.githubusercontent.com/75223088/160558589-8ab46567-8973-4122-9a45-43133365f5e9.png">
+</p> 
 
 This web app queries the latest blocks from the Gaia-X Testnet, including blocks, addresses, transactions, and portal events. It uses the [statistics-api](https://github.com/deltaDAO/gaia-x-testnet-statistics) and a public Gaia-X testnet node. So all statistics can be reproduced without further setup by simply running the API and this web app locally.
 
 The stats app could be considered a specialized version of a block explorer to provide insights into development, activity, and potential issues.
-
-The testnet is queried at a regular interval to reflect the latest changes. 
 
 ## Build Setup
 
