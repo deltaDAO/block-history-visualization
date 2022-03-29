@@ -11,9 +11,7 @@
       </div>
     </div>
 
-    <div
-      class="stats stats-vertical md:stats-horizontal shadow-lg my-4 w-4/5"
-    >
+    <div class="stats stats-vertical md:stats-horizontal shadow-lg my-4 w-4/5">
       <div class="stat">
         <div class="stat-title">Total Wallet Addresses</div>
         <div class="stat-value text-primary text-6xl">
