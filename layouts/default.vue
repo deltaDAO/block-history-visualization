@@ -9,7 +9,8 @@
     </div>
     <app-navbar class="col-start-2 col-end-8" />
     <Nuxt class="col-start-2 col-span-11 px-4" />
-    <app-footer class="col-start-1 col-span-12" />
+    <app-footer class="col-start-9 col-span-4 w-full h-full md:bg-secondary" />
+    <div class="col-start-1 col-span-12 w-full h-24 bg-base-200 mt-6"></div>
   </div>
 </template>
 
@@ -20,3 +21,24 @@ export default {
   components: { AppNavbar, AppFooter },
 }
 </script>
+
+<style>
+html {
+  font-family: 'Overpass', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+</style>
