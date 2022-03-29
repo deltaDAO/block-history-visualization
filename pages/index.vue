@@ -43,10 +43,9 @@ export default Vue.extend({
     }
   },
   mounted() {
-    axios
-      .get(`${process.env.baseUrl}/api/statistics`)
-      .then((response) => {
-        this.stats = response.data})
+    axios.get(`${process.env.baseUrl}/api/statistics`).then((response) => {
+      this.stats = response.data
+    })
   },
 })
 </script>

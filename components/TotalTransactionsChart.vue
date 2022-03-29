@@ -103,7 +103,7 @@ export default Vue.extend({
     },
     chartData() {
       this.updateChart()
-    }
+    },
   },
   mounted() {
     this.chartLabels = this.chartData.groupedByDay.timeStamps
