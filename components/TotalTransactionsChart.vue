@@ -98,8 +98,21 @@ export default Vue.extend({
     }
   },
   watch: {
-    selectedGroup(value) {
-      switch (value) {
+    selectedGroup() {
+      this.updateChart()
+    },
+    chartData() {
+      this.updateChart()
+    }
+  },
+  mounted() {
+    this.chartLabels = this.chartData.groupedByDay.timeStamps
+    this.chartValues = this.chartData.groupedByDay.overallValues
+    this.updateChart(this.selectedGroup)
+  },
+  methods: {
+    updateChart() {
+      switch (this.selectedGroup) {
         case 'week':
           this.chartLabels = this.chartData.groupedByWeek.timeStamps
           this.chartValues = this.chartData.groupedByWeek.overallValues
@@ -113,16 +126,7 @@ export default Vue.extend({
           this.chartValues = this.chartData.groupedByDay.overallValues
           break
       }
-      this.updateChart()
-    },
-  },
-  mounted() {
-    this.chartLabels = this.chartData.groupedByDay.timeStamps
-    this.chartValues = this.chartData.groupedByDay.overallValues
-    this.updateChart(this.selectedGroup)
-  },
-  methods: {
-    updateChart() {
+
       this.isLoading = true
 
       // update chart data
