@@ -43,7 +43,7 @@ export default {
   },
 
   env: {
-    baseUrl: process.env.BASE_URL
+    baseUrl: process.env.BASE_URL,
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

@@ -30,7 +30,9 @@
 
       <div class="stat">
         <div class="stat-title">Total blocks</div>
-        <div class="stat-value text-primary text-6xl">{{ totalBlocks.toLocaleString() }}</div>
+        <div class="stat-value text-primary text-6xl">
+          {{ totalBlocks.toLocaleString() }}
+        </div>
       </div>
     </div>
   </div>
