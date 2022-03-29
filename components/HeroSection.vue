@@ -12,7 +12,7 @@
             </h1>
           </div>
           <div
-            class="stats stats-vertical sm:stats-horizontal bg-primary text-primary-content my-4 drop-shadow-lg max-w-fit"
+            class="stats stats-vertical sm:stats-horizontal bg-primary text-primary-content my-4 shadow-lg max-w-fit"
           >
             <div class="stat">
               <div class="stat-title">Total Transactions</div>

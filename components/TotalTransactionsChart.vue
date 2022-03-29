@@ -7,7 +7,7 @@
         Total Transactions
       </h2>
       <div
-        class="h-fit max-h-screen bg-white drop-shadow-lg rounded-2xl p-4 mb-4"
+        class="h-fit max-h-screen bg-white shadow-lg rounded-2xl p-4 mb-4"
       >
         <div class="btn-group">
           <button
