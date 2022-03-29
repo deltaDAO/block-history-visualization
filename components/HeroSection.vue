@@ -8,11 +8,11 @@
               Hackathon #3
             </div>
             <h1 class="text-6xl font-semibold text-black leading-none">
-              Gaia-X Testnet statistics
+              Gaia-X Testnet Statistics
             </h1>
           </div>
           <div
-            class="stats stats-vertical sm:stats-horizontal bg-primary text-primary-content my-4 drop-shadow-lg max-w-fit"
+            class="stats stats-vertical sm:stats-horizontal bg-primary text-primary-content my-4 shadow-lg max-w-fit"
           >
             <div class="stat">
               <div class="stat-title">Total Transactions</div>
